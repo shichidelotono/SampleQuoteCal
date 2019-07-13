@@ -1,5 +1,7 @@
 # SampleQuoteCal
 
+Example
+
 * URL - https://localhost:5001/api/quote
 * Method - Post
 * Body - {
