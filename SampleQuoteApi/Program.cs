@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace SampleApi1
+namespace SampleQuoteApi
 {
     public class Program
     {

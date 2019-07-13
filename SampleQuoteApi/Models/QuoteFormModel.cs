@@ -1,6 +1,6 @@
-﻿namespace SampleApi1.Requests
+﻿namespace SampleQuoteApi.Models
 {
-    public class QuoteReq
+    public class QuoteFormModel
     {
         public decimal AmountRequired { get; set; }
         public int Term { get; set; }

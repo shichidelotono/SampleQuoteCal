@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SampleApi1.Models;
+using SampleQuoteApi.Models;
 using System;
 using System.Diagnostics;
 
-namespace SampleApi1.Controllers
+namespace SampleQuoteApi.Controllers
 {
     public class HomeController : Controller
     {

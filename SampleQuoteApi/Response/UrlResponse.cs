@@ -1,4 +1,4 @@
-﻿namespace SampleApi1.Response
+﻿namespace SampleQuoteApi.Response
 {
     public class UrlResponse
     {

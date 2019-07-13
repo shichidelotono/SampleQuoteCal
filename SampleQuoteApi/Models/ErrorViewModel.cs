@@ -1,6 +1,6 @@
 using System;
 
-namespace SampleApi1.Models
+namespace SampleQuoteApi.Models
 {
     public class ErrorViewModel
     {

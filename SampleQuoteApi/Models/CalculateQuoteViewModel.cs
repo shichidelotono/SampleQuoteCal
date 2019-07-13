@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SampleApi1.Models
+namespace SampleQuoteApi.Models
 {
     public class CalculateQuoteViewModel
     {
