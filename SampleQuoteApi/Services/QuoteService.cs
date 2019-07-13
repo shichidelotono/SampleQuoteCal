@@ -1,5 +1,5 @@
-﻿using SampleQuoteApi.Repository;
-using SampleQuoteApi.Representation;
+﻿using SampleQuoteApi.Domain;
+using SampleQuoteApi.Repository;
 
 namespace SampleQuoteApi.Services
 {
@@ -15,7 +15,7 @@ namespace SampleQuoteApi.Services
         public void AddQuote(Quote quote)
         {
             // some business logic
-            quoteRepository.SaveQuote(quote.ToEntity());
+            //quoteRepository.SaveQuote(quote.ToEntity());
         }
 
         // implement unit tests and integration test

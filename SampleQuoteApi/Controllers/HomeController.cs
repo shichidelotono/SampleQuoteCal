@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SampleQuoteApi.Domain;
 using SampleQuoteApi.Models;
+using SampleQuoteApi.Services;
 using System;
 using System.Diagnostics;
 
@@ -7,33 +9,29 @@ namespace SampleQuoteApi.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly QuoteService _quoteService;
+
+        public HomeController(QuoteService quoteService)
+        {
+            _quoteService = quoteService;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Quote()
+        public IActionResult Quote(QuoteFormModel model)
         {
-            var model = new QuoteFormModel
-            {
-                AmountRequired = 5000,
-                Term = 2,
-                Title = "Mr.",
-                FirstName = "ShiChang",
-                LastName = "Hou",
-                Mobile = "0434386289",
-                Email = "houshichang@hotmail.com"
-            };
-
             return View(model);
         }
 
         public IActionResult CalculateQuote(QuoteFormModel quoteFormModel)
         {
-
+            // todo
             quoteFormModel.AmountRequired = 5000;
             quoteFormModel.Term = 24;
-
+            // todo: validate
             var calculateQuoteViewModel = new CalculateQuoteViewModel
             {
                 Name = $@"{quoteFormModel.FirstName} {quoteFormModel.LastName}",
@@ -42,6 +40,9 @@ namespace SampleQuoteApi.Controllers
                 FinancialAmount = quoteFormModel.AmountRequired,
                 Repayments = Pmt(0.0899, quoteFormModel.Term, (double)quoteFormModel.AmountRequired)
             };
+
+            // todo: save to sqlite
+            _quoteService.AddQuote(new Quote());
 
             return View(calculateQuoteViewModel);
         }

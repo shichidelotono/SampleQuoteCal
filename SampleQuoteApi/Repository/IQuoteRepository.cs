@@ -2,6 +2,6 @@
 {
     public interface IQuoteRepository
     {
-        void SaveQuote(object p);
+        void SaveQuote(QuoteEntity quote);
     }
 }

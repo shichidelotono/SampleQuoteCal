@@ -1,9 +1,5 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using SampleQuoteApi.Representation;
+﻿using Microsoft.AspNetCore.Mvc;
 using SampleQuoteApi.RequestModels;
-using SampleQuoteApi.Response;
-using SampleQuoteApi.Services;
 
 namespace SampleQuoteApi.Controllers
 {
@@ -11,24 +7,15 @@ namespace SampleQuoteApi.Controllers
     [ApiController]
     public class QuoteController : ControllerBase
     {
-        private readonly IQuoteService quoteService;
-
-        public QuoteController(IQuoteService quoteService)
-        {
-            this.quoteService = quoteService;
-        }
-
         [HttpPost]
         public IActionResult Post([FromBody] CreateQuoteRequestModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest();
-            }
 
-            quoteService.AddQuote(new Quote());
-
-            return new OkObjectResult($@"https://{Request.Host.Value}");
+            var query = $@"amountRequired={model.AmountRequired}&term={model.Term}&title={model.Title}&firstName={model.FirstName}&lastName={model.LastName}&mobile={model.Mobile}&email={model.Email}";
+        
+            return new OkObjectResult($@"https://{Request.Host.Value}/home/quote?{query}");
         }
     }
 }

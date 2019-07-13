@@ -1,7 +1,6 @@
 ﻿using System;
-using SampleQuoteApi.RequestModels;
 
-namespace SampleQuoteApi.Representation
+namespace SampleQuoteApi.Domain
 {
     public class Quote
     {
@@ -14,11 +13,11 @@ namespace SampleQuoteApi.Representation
         public string Mobile { get; }
         public string Email { get; }
 
-        public Quote()//fill here
+        public Quote()
         {
         }
 
-        internal object ToEntity()
+        public object ToEntity()
         {
             throw new NotImplementedException();
         }

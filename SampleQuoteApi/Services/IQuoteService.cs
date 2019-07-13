@@ -1,4 +1,4 @@
-﻿using SampleQuoteApi.Representation;
+﻿using SampleQuoteApi.Domain;
 
 namespace SampleQuoteApi.Services
 {

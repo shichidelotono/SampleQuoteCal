@@ -1,25 +1,31 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace SampleQuoteApi.RequestModels
+namespace SampleQuoteApi.Repository
 {
-    public class CreateQuoteRequestModel
+    public class QuoteDbModel
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
-        [Range(2000, 15001)]
         public decimal AmountRequired { get; set; }
         [Required]
-        [Range(3, 36)]
         public int Term { get; set; }
         [Required]
-        [StringLength(3)]
         public string Title { get; set; }
         [Required]
+        [MaxLength(128)]
         public string FirstName { get; set; }
         [Required]
+        [MaxLength(128)]
         public string LastName { get; set; }
         [Required]
+        [MaxLength(128)]
         public string Mobile { get; set; }
         [Required]
+        [MaxLength(128)]
         public string Email { get; set; }
+        [Required]
+        public DateTime DateTimeAdded { get; set; }
     }
 }
