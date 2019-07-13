@@ -1,8 +1,8 @@
 # SampleQuoteCal
 
-URL - https://localhost:5001/api/quote
-Method - Post
-Body - {
+* URL - https://localhost:5001/api/quote
+* Method - Post
+* Body - {
 	"amountRequired" : 5000,
 	"term" : 24,
 	"title": "Mrs",
