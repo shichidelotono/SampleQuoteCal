@@ -2,8 +2,12 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+// Credit to https://codepen.io/faur/pen/WXzQxN
+
 (function ($) {
     $(document).ready(function () {
+        // amount slider
         $('.amount-input-range').each(function () {
             var value = $(this).attr('data-slider-value');
             var separator = value.indexOf(',');
@@ -29,6 +33,7 @@
             });
         });
 
+        // term slider
         $('.term-input-range').each(function () {
             var value = $(this).attr('data-slider-value');
             var separator = value.indexOf(',');
