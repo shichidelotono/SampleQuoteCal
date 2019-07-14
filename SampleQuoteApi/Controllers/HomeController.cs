@@ -31,9 +31,10 @@ namespace SampleQuoteApi.Controllers
             quoteFormModel.AmountRequired = 5000;
             quoteFormModel.Term = 24;
 
-            // todo: validate
-
             var quoteDomain = new Quote(quoteFormModel);
+
+            if (!quoteDomain.IsValid)
+                Error();
 
             var calculateQuoteViewModel = new CalculateQuoteViewModel(
                 $@"{quoteDomain.FirstName} {quoteDomain.LastName}",

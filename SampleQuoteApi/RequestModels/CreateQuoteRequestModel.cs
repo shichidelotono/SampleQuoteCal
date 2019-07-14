@@ -5,13 +5,13 @@ namespace SampleQuoteApi.RequestModels
     public class CreateQuoteRequestModel
     {
         [Required]
-        [Range(2000, 15001)]
+        [Range(2100, 15001)]
         public decimal AmountRequired { get; set; }
         [Required]
         [Range(3, 36)]
         public int Term { get; set; }
         [Required]
-        [StringLength(3)]
+        [StringLength(2)]
         public string Title { get; set; }
         [Required]
         public string FirstName { get; set; }

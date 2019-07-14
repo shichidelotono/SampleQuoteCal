@@ -9,7 +9,7 @@ namespace SampleQuoteApi.Models
         public string Mobile { get; }
         public string Email { get; }
         public decimal FinancialAmount { get; }
-        public decimal Repayments { get; }
+        public string Repayments { get; }
 
         public CalculateQuoteViewModel(string name, string mobile, string email, decimal financialAmount, decimal repayments)
         {
@@ -17,7 +17,7 @@ namespace SampleQuoteApi.Models
             Mobile = mobile;
             Email = email;
             FinancialAmount = financialAmount;
-            Repayments = repayments;
+            Repayments = repayments.ToString("0.00");
         }
     }
 }
