@@ -1,23 +1,21 @@
 ﻿using SampleQuoteApi.Domain;
 using SampleQuoteApi.Repository;
+using System.Threading.Tasks;
 
 namespace SampleQuoteApi.Services
 {
     public class QuoteService : IQuoteService
     {
-        private readonly IQuoteRepository quoteRepository;
+        private readonly IQuoteRepository _quoteRepository;
 
         public QuoteService(IQuoteRepository quoteRepository)
         {
-            this.quoteRepository = quoteRepository;
+            _quoteRepository = quoteRepository;
         }
 
-        public void AddQuote(Quote quote)
+        public void AddQuote(Quote quoteDomain)
         {
-            // some business logic
-            //quoteRepository.SaveQuote(quote.ToEntity());
+            Task.Factory.StartNew(() => _quoteRepository.SaveQuote(quoteDomain.ToDbEntity()));
         }
-
-        // implement unit tests and integration test
     }
 }

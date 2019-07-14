@@ -1,5 +1,3 @@
-using System;
-
 namespace SampleQuoteApi.Models
 {
     public class ErrorViewModel

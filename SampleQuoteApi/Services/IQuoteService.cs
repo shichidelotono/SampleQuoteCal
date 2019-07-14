@@ -4,6 +4,6 @@ namespace SampleQuoteApi.Services
 {
     public interface IQuoteService
     {
-        void AddQuote(Quote quote);
+        void AddQuote(Quote quoteDomain);
     }
 }

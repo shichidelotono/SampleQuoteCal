@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using SampleQuoteApi.Repository;
+using System;
 
 namespace SampleQuoteApi.Models
 {
     public class CalculateQuoteViewModel
     {
-        public string Name { get; set; }
-        public string Mobile { get; set; }
-        public string Email { get; set; }
-        public decimal FinancialAmount { get; set; }
-        public decimal Repayments { get; set; }
+        public string Name { get; }
+        public string Mobile { get; }
+        public string Email { get; }
+        public decimal FinancialAmount { get; }
+        public decimal Repayments { get; }
+
+        public CalculateQuoteViewModel(string name, string mobile, string email, decimal financialAmount, decimal repayments)
+        {
+            Name = name;
+            Mobile = mobile;
+            Email = email;
+            FinancialAmount = financialAmount;
+            Repayments = repayments;
+        }
     }
 }
