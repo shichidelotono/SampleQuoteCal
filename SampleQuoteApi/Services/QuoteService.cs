@@ -1,6 +1,5 @@
 ﻿using SampleQuoteApi.Domain;
 using SampleQuoteApi.Repository;
-using System.Threading.Tasks;
 
 namespace SampleQuoteApi.Services
 {
@@ -15,7 +14,7 @@ namespace SampleQuoteApi.Services
 
         public void AddQuote(Quote quoteDomain)
         {
-            Task.Factory.StartNew(() => _quoteRepository.SaveQuote(quoteDomain.ToDbEntity()));
+            _quoteRepository.SaveQuote(quoteDomain.ToDbEntity());
         }
     }
 }

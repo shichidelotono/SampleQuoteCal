@@ -157,7 +157,7 @@ namespace UnitTests.Domain
             var givenQuoteFormModel = new QuoteFormModel
             {
                 AmountRequired = 15001,
-                Term = 37,
+                Term = 30,
                 Title = "Mrrrr",
                 FirstName = "ShiChang",
                 LastName = "Hou",
@@ -179,7 +179,7 @@ namespace UnitTests.Domain
             var givenQuoteFormModel = new QuoteFormModel
             {
                 AmountRequired = 15001,
-                Term = 37,
+                Term = 30,
                 Title = "Mr",
                 FirstName = "",
                 LastName = "Hou",
@@ -201,7 +201,7 @@ namespace UnitTests.Domain
             var givenQuoteFormModel = new QuoteFormModel
             {
                 AmountRequired = 15001,
-                Term = 37,
+                Term = 30,
                 Title = "Mr",
                 FirstName = "ShiChang",
                 LastName = "",
@@ -223,7 +223,7 @@ namespace UnitTests.Domain
             var givenQuoteFormModel = new QuoteFormModel
             {
                 AmountRequired = 15001,
-                Term = 37,
+                Term = 30,
                 Title = "Mr",
                 FirstName = "ShiChang",
                 LastName = "Hou",
@@ -245,7 +245,7 @@ namespace UnitTests.Domain
             var givenQuoteFormModel = new QuoteFormModel
             {
                 AmountRequired = 15001,
-                Term = 37,
+                Term = 30,
                 Title = "Mr",
                 FirstName = "ShiChang",
                 LastName = "Hou",
@@ -267,7 +267,7 @@ namespace UnitTests.Domain
         {
         }
 
-        public  override decimal Pmt(double yearlyInterestRate, int totalNumberOfMonths, double loanAmount)
+        public override decimal Pmt(double yearlyInterestRate, int totalNumberOfMonths, double loanAmount)
         {
             return 200;
         }
