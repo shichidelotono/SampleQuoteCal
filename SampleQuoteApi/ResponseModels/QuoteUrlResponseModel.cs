@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SampleQuoteApi.ResponseModels
+﻿namespace SampleQuoteApi.ResponseModels
 {
-    public class QuoteUrlResponseModel
+    public class QuoteUrlResponseModel 
     {
+        public string Url { get; set; }
     }
 }

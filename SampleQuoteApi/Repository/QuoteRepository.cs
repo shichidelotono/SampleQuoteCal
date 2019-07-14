@@ -12,10 +12,5 @@
                 dbContext.SaveChanges();      
             }
         }
-
-        public CalculateQuoteDbModel GetLatest()
-        {
-            return null;
-        }
     }
 }

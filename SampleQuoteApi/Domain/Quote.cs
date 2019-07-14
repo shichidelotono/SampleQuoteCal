@@ -50,7 +50,7 @@ namespace SampleQuoteApi.Domain
             };
         }
 
-        private decimal Pmt(double yearlyInterestRate, int totalNumberOfMonths, double loanAmount)
+        public virtual decimal Pmt(double yearlyInterestRate, int totalNumberOfMonths, double loanAmount)
         {
             if (yearlyInterestRate > 0)
             {

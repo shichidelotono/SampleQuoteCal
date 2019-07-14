@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SampleQuoteApi.RequestModels;
+using SampleQuoteApi.ResponseModels;
 
 namespace SampleQuoteApi.Controllers
 {
@@ -14,8 +15,9 @@ namespace SampleQuoteApi.Controllers
                 return BadRequest();
 
             var query = $@"amountRequired={model.AmountRequired}&term={model.Term}&title={model.Title}&firstName={model.FirstName}&lastName={model.LastName}&mobile={model.Mobile}&email={model.Email}";
-        
-            return new OkObjectResult($@"https://{Request.Host.Value}/home/quote?{query}");
+            var url = $@"https://{Request.Host.Value}/home/quote?{query}";
+
+            return Ok(new QuoteUrlResponseModel { Url = url });
         }
     }
 }

@@ -3,6 +3,5 @@
     public interface IQuoteRepository
     {
         void SaveQuote(CalculateQuoteDbModel quote);
-        CalculateQuoteDbModel GetLatest();
     }
 }
