@@ -4,21 +4,54 @@
     ViewData["Title"] = "Apply Now";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Your quote</h1>
-    <div>
-        <div>Your information</div><a>Edit</a>
-        <div>Name</div><div>@Model.Name</div>
-        <div>Mobile</div><div>@Model.Mobile</div>
-        <div>Email</div><div>@Model.Email</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-secondary margin-bottom text-center">Your quote</h1>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-6 text-left"><h4 class="text-secondary">Your information</h4></div>
+                <div class="form-group col-md-6 text-right slider-color"><strong>Edit</strong></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-6 text-left"><span class="info-color"><strong>Name</strong></span></div>
+                <div class="form-group col-md-6 text-right"><span class="info-color"><strong>@Model.Name</strong></span></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-6 text-left"><span class="info-color"><strong>Mobile</strong></span></div>
+                <div class="form-group col-md-6 text-right"><span class="info-color"><strong>@Model.Mobile</strong></span></div>
+            </div>
+            <div class="form-row margin-bottom align-items-baseline">
+                <div class="form-group col-md-6 text-left"><span class="info-color"><strong>Email</strong></span></div>
+                <div class="form-group col-md-6 text-right"><span class="info-color"><strong>@Model.Email</strong>l</span></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-6 text-left"><h4 class="text-secondary">Finance details</h4></div>
+                <div class="form-group col-md-6 text-right slider-color"><strong>Edit</strong></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-6 text-left"><span class="info-color font-large">Finance amount</span></div>
+                <div class="form-group col-md-6 text-right slider-color font-large"><strong>$@Model.FinancialAmount</strong></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-9 text-left dotted-border"></div>
+                <div class="form-group col-md-3 text-right font-small"><span class="text-secondary">over 24 months</span></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-6 text-left"><span class="info-color font-large">Repayments from</span></div>
+                <div class="form-group col-md-6 text-right slider-color font-large"><strong>$@Model.Repayments</strong></div>
+            </div>
+            <div class="form-row align-items-baseline">
+                <div class="form-group col-md-10 text-left dotted-border"></div>
+                <div class="form-group col-md-2 text-right font-small"><span class="text-secondary">Monthly</span></div>
+            </div>
+            <div class="form-group text-center">
+                <button type="button" class="custom-button">Apply now</button>
+            </div>
+            <div class="form-group text-center">
+                <p class="text-secondary">Total repayments $@Model.Repayments, made up of an establishment fee of $300.00, interest of $@Model.Repayments. The repayment amount is based on the variables selected, is subject to our assessment and suitability, and other important terms and conditions apply.</p>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div>
-        <div>Finance details</div><a>Edit</a>
-        <div>Finance amount</div><div>$@Model.FinancialAmount</div>
-        <div>--------------</div><div>over 24 months</div>
-        <div>Repayments from</div><div>$@Model.Repayments</div>
-        <div>---------------</div><div>Weekly</div>
-    </div>
-    <input type="submit" value="Apply now"/>
-    <p>Total repayments $@Model.Repayments, made up of an establishment fee of $300.00, inerest of $@Model.Repayments.  The repayment amount is based on the variables selected, is subject to our assessment and suitability, and other important terms and conditions apply.</p>
-</div>
+</div>   

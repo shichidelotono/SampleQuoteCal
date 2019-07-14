@@ -2,46 +2,85 @@
 
 @{
     ViewData["Title"] = "Quote";
-
 }
 
-<div class="text-center">
-    <h1 class="display-4">Quote Calculator</h1>
-    <form action="CalculateQuote" method="post">
-        <div>
-            <div id="slider"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1 class="text-secondary margin-bottom text-center">Quote Calculator</h1>
+            <form action="CalculateQuote" method="post">
+                <div class="form-group">
+                    <div class="slider-wrapper green">
+                        <input name="AmountRequired" class="amount-input-range"
+                               data-slider-id="borrowSlider"
+                               type="text"
+                               data-slider-min="2100"
+                               data-slider-max="15000"
+                               data-slider-tooltip="always"
+                               data-slider-step="1"
+                               data-slider-value="5000" />
+                    </div>
+                </div>
+                <div class="form-row margin-bottom">
+                    <div class="form-group col-md-2 text-secondary text-left small"><span><strong>$2,100</strong></span></div>
+                    <div class="form-group col-md-8 text-secondary text-center small"><span><strong>How much do you need?</strong></span></div>
+                    <div class="form-group col-md-2 text-secondary text-right small"><span><strong>$15,000</strong></span></div>
+                </div>
+                <div class="form-group">
+                    <div class="slider-wrapper green">
+                        <input name="Term" class="term-input-range"
+                               data-slider-id="borrowSlider"
+                               type="text"
+                               data-slider-min="3"
+                               data-slider-max="36"
+                               data-slider-tooltip="always"
+                               data-slider-step="1"
+                               data-slider-value="15" />
+                    </div>
+                </div>
+                <div class="form-row margin-bottom">
+                    <div class="form-group col-md-2 text-secondary text-left small"><span><strong>3</strong></span></div>
+                    <div class="form-group col-md-8 text-secondary text-center small"><span><strong>For how long?</strong></span></div>
+                    <div class="form-group col-md-2 text-secondary text-right small"><span><strong>36</strong></span></div>
+                </div>
+                <div class="form-row"><span class="slider-color">Title</span></div>
+                <div class="form-row margin-bottom">
+                    <div class="form-group col-md-2 height">
+                        <select id="title" name="Title" class="text-secondary bottom-border">
+                            <option selected>Mr.</option>
+                            <option>Mrs.</option>
+                            <option>Miss</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-4 height">
+                        <input class="bottom-border text-left" placeholder="First name" type="text" id="firstName" name="FirstName" value="@Model.FirstName" required>
+                        <div class="invalid-feedback">This field is required.</div>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="form-group col-md-4 height">
+                        <input class="bottom-border text-left" placeholder="Last name" type="text" id="lastName" name="LastName" value="@Model.LastName" required>
+                        <div class="invalid-feedback">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-row margin-bottom align-bottom justify-content-md-center">
+                    <div class="col-md-6">
+                        <input class="bottom-border text-left" placeholder="Your email" type="text" id="email" name="Email" value="@Model.Email" required>
+                        <div class="invalid-feedback">This field is required.</div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <input class="bottom-border text-left" placeholder="Mobile number" type="text" id="mobile" name="Mobile" value="@Model.Mobile" required>
+                        <div class="invalid-feedback">This field is required.</div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="custom-button">Calculate quote</button>
+                </div>
+                <div class="form-group text-center small"><span class="text-secondary">Quote does not affect your credit score</span></div>
+            </form>
         </div>
-        <div><p>term slider here</p></div>
-        <div>
-            <div>Title</div>
-            <div>
-                <div>
-                    <select id="Title" name="Title">
-                        <option>Mr</option>
-                        <option>Ms</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="FirstName">First Name</label>
-                    <input placeholder="First name" type="text" id="FirstName" name="FirstName" value="@Model.FirstName">
-                </div>
-                <div>
-                    <label for="LastName">Last Name</label>
-                    <input placeholder="Last name" type="text" id="LastName" name="LastName" value="@Model.LastName">
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label for="LastName">Your email</label>
-                    <input placeholder="Your email" type="text" id="Email" name="Email" value="@Model.Email">
-                </div>
-                <div>
-                    <label for="LastName">Mobile number</label>
-                    <input placeholder="Mobile number" type="text" id="Mobile" name="Mobile" value="@Model.Mobile">
-                </div>
-            </div>
-        </div>
-        <input type="submit" value="Calculate quote" />
-        <p>Quote does not affect your credit score</p>
-    </form>
+        <div class="col-md-2"></div>
+    </div>
 </div>

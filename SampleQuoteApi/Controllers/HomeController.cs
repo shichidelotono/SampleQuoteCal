@@ -27,10 +27,6 @@ namespace SampleQuoteApi.Controllers
 
         public IActionResult CalculateQuote(QuoteFormModel quoteFormModel)
         {
-            // todo: for test
-            quoteFormModel.AmountRequired = 5000;
-            quoteFormModel.Term = 24;
-
             var quoteDomain = new Quote(quoteFormModel);
 
             if (!quoteDomain.IsValid)

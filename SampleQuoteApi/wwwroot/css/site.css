@@ -54,3 +54,101 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* my custom css */
+input {
+    color: #808080;
+}
+
+.info-color {
+    color: #bfbfbf;
+}
+
+.height {
+    min-height: 25px;
+}
+
+.slider-color {
+    color: #10d8dd;
+}
+
+.custom-button {
+    padding: 10px 50px;
+    background-color: #37cf19;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: #bfbfbf 0 10px 9px;
+}
+
+.margin-bottom {
+    margin-bottom: 40px;
+}
+
+.slider-selection {
+    background: #10d8dd !important;
+}
+
+.slider.slider-horizontal {
+    width: 100% !important;
+    height: 20px;
+    margin-top: 20px;
+}
+
+.slider-handle {
+    background-color: #fff !important;
+    background-image: none !important;
+    border: 1px solid #bfbfbf;
+}
+
+.slider-strips .slider-selection {
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255,252,252,0.08) 5px, rgba(252,252,252,0.08) 10px) !important;
+    background-image: -ms-repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255,252,252,0.08) 5px, rgba(252,252,252,0.08) 10px) !important;
+    background-image: -o-repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255,252,252,0.08) 5px, rgba(252,252,252,0.08) 10px) !important;
+    background-image: -webkit-repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255,252,252,0.08) 5px, rgba(252,252,252,0.08) 10px) !important;
+}
+
+.tooltip-inner {
+    max-width: 200px;
+    padding: 3px 20px;
+    color: #fff !important;
+    text-align: center;
+    background-color: #10d8dd !important;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.tooltip .tooltip-inner::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #10d8dd transparent transparent transparent;
+}
+
+.tooltip.top .tooltip-arrow {
+    display: none !important;
+}
+
+.slider .tooltip.top {
+    margin-top: -31px !important;
+}
+
+.font-large {
+    font-size: 16px;
+}
+
+.font-small {
+    font-size: 13px;
+}
+
+.dotted-border {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px dotted #bfbfbf;
+}
