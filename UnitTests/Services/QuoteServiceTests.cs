@@ -1,4 +1,6 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Options;
+using Moq;
+using SampleQuoteApi.AppSettings;
 using SampleQuoteApi.Domain;
 using SampleQuoteApi.Models;
 using SampleQuoteApi.Repository;
@@ -32,7 +34,7 @@ namespace UnitTests.Services
                 Mobile = "0434386289",
                 Email = "shichang@outlook.com"
             };
-            var givenQuoteDomainObject = new Quote(givenQuoteFormModel);
+            var givenQuoteDomainObject = new Quote(givenQuoteFormModel, new Mock<IOptions<QuoteSetting>>().Object);
             var givenDbEntity = givenQuoteDomainObject.ToDbEntity();
             _mockQuoteRespository.Setup(q => q.SaveQuote(It.IsAny<CalculateQuoteDbModel>())).Verifiable();
 

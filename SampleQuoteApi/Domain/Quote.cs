@@ -1,4 +1,6 @@
-﻿using SampleQuoteApi.Models;
+﻿using Microsoft.Extensions.Options;
+using SampleQuoteApi.AppSettings;
+using SampleQuoteApi.Models;
 using SampleQuoteApi.Repository;
 using System;
 
@@ -6,14 +8,11 @@ namespace SampleQuoteApi.Domain
 {
     public class Quote
     {
-        private readonly decimal minAmountRequired = 2100;
-        private readonly decimal maxAmountRequired = 15000;
-        private readonly int minTerm = 3;
-        private readonly int maxTerm = 2100;
         private readonly int maxTitleLength = 2;
         private readonly double _interestRate = 0.0899;
         private decimal _repayments = -1;
-        private bool? _isValid;        
+        private bool? _isValid;
+        private readonly IOptions<QuoteSetting> _quoteSetting;
 
         public decimal AmountRequired { get; }
         public int Term { get; }
@@ -23,9 +22,12 @@ namespace SampleQuoteApi.Domain
         public string Mobile { get; }
         public string Email { get; }
         public decimal Repayments => _repayments >= 0 ? _repayments : Pmt(_interestRate, Term, (double)AmountRequired);
+        public decimal TotalRepayments => Repayments * Term + _quoteSetting.Value.EstablishmentFee;
+        public decimal Interest => Repayments * Term - AmountRequired;
         public bool IsValid => _isValid != null ? _isValid.Value : Validate();
+        public decimal EstablishmentFee() => _quoteSetting.Value.EstablishmentFee;
 
-        public Quote(QuoteFormModel quoteFormModel)
+        public Quote(QuoteFormModel quoteFormModel, IOptions<QuoteSetting> quoteSetting)
         {
             AmountRequired = quoteFormModel.AmountRequired;
             Term = quoteFormModel.Term;
@@ -34,6 +36,7 @@ namespace SampleQuoteApi.Domain
             LastName = quoteFormModel.LastName;
             Mobile = quoteFormModel.Mobile;
             Email = quoteFormModel.Email;
+            _quoteSetting = quoteSetting;
         }   
 
         public CalculateQuoteDbModel ToDbEntity()
@@ -63,8 +66,8 @@ namespace SampleQuoteApi.Domain
 
         private bool Validate()
         {
-            return (AmountRequired >= minAmountRequired && AmountRequired < maxAmountRequired)
-                && (Term >= minTerm && Term < maxTerm)
+            return (AmountRequired >= _quoteSetting.Value.MinAmountRequired && AmountRequired < _quoteSetting.Value.MaxAmountRequired)
+                && (Term >= _quoteSetting.Value.MinTerm && Term < _quoteSetting.Value.MaxTerm)
                 && Title.Length == maxTitleLength
                 && !string.IsNullOrWhiteSpace(FirstName)
                 && !string.IsNullOrWhiteSpace(LastName)

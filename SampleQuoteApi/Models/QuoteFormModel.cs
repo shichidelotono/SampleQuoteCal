@@ -9,5 +9,9 @@
         public string LastName { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
+        public int MinTerm { get; set; }
+        public int MaxTerm { get; set; }
+        public int MinAmountRequired { get; set; }
+        public int MaxAmountRequired { get; set; }
     }
 }

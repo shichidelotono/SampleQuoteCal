@@ -1,3 +1,6 @@
+using Microsoft.Extensions.Options;
+using Moq;
+using SampleQuoteApi.AppSettings;
 using SampleQuoteApi.Domain;
 using SampleQuoteApi.Models;
 using Xunit;
@@ -6,6 +9,20 @@ namespace UnitTests.Domain
 {
     public class QuoteTests
     {
+        private Mock<IOptions<QuoteSetting>> _mockQuoteSetting;
+
+        public QuoteTests()
+        {
+            _mockQuoteSetting = new Mock<IOptions<QuoteSetting>>();
+            var _stubQuoteSetting = new QuoteSetting {
+                MinAmountRequired = 2100,
+                MaxAmountRequired = 15000,
+                MinTerm = 3,
+                MaxTerm = 36
+            };
+            _mockQuoteSetting.Setup(q => q.Value).Returns(_stubQuoteSetting);
+        }
+
         [Fact]
         public void given_quoteformmodel_should_map_to_quote_domain_object_correctly()
         {
@@ -22,7 +39,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.Equal(givenQuoteFormModel.AmountRequired, result.AmountRequired);
@@ -48,7 +65,7 @@ namespace UnitTests.Domain
                 Mobile = "0434386289",
                 Email = "shichang@outlook.com"
             };
-            var quoteDomain = new QuoteForTest(givenQuoteFormModel);
+            var quoteDomain = new QuoteForTest(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // act
             var result = quoteDomain.ToDbEntity();
@@ -78,7 +95,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -100,7 +117,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -122,7 +139,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -144,7 +161,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -166,7 +183,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -188,7 +205,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -210,7 +227,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -232,7 +249,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -254,7 +271,7 @@ namespace UnitTests.Domain
             };
 
             // act
-            var result = new Quote(givenQuoteFormModel);
+            var result = new Quote(givenQuoteFormModel, _mockQuoteSetting.Object);
 
             // assert
             Assert.False(result.IsValid);
@@ -263,7 +280,7 @@ namespace UnitTests.Domain
 
     public class QuoteForTest : Quote
     {
-        public QuoteForTest(QuoteFormModel quoteFormModel): base(quoteFormModel)
+        public QuoteForTest(QuoteFormModel quoteFormModel, IOptions<QuoteSetting> quoteSetting): base(quoteFormModel, quoteSetting)
         {
         }
 

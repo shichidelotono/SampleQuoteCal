@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using SampleQuoteApi.AppSettings;
 using SampleQuoteApi.Domain;
 using SampleQuoteApi.Models;
 using SampleQuoteApi.Services;
@@ -9,10 +11,12 @@ namespace SampleQuoteApi.Controllers
     public class HomeController : Controller
     {
         private readonly IQuoteService _quoteService;
+        private readonly IOptions<QuoteSetting> _quoteSetting;
 
-        public HomeController(IQuoteService quoteService)
+        public HomeController(IQuoteService quoteService, IOptions<QuoteSetting> quoteSetting)
         {
             _quoteService = quoteService;
+            _quoteSetting = quoteSetting;
         }
 
         public IActionResult Index()
@@ -22,22 +26,22 @@ namespace SampleQuoteApi.Controllers
 
         public IActionResult Quote(QuoteFormModel model)
         {
+            model.MinTerm = _quoteSetting.Value.MinTerm;
+            model.MaxTerm = _quoteSetting.Value.MaxTerm;
+            model.MinAmountRequired = _quoteSetting.Value.MinAmountRequired;
+            model.MaxAmountRequired = _quoteSetting.Value.MaxAmountRequired;
+
             return View(model);
         }
 
         public IActionResult CalculateQuote(QuoteFormModel quoteFormModel)
         {
-            var quoteDomain = new Quote(quoteFormModel);
+            var quoteDomain = new Quote(quoteFormModel, _quoteSetting);
 
             if (!quoteDomain.IsValid)
                 Error();
 
-            var calculateQuoteViewModel = new CalculateQuoteViewModel(
-                $@"{quoteDomain.FirstName} {quoteDomain.LastName}",
-                quoteDomain.Mobile,
-                quoteDomain.Email,
-                quoteDomain.AmountRequired,
-                quoteDomain.Repayments);
+            var calculateQuoteViewModel = new CalculateQuoteViewModel(quoteDomain);
 
             _quoteService.AddQuote(quoteDomain);
 
