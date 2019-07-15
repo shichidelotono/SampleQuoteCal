@@ -5,7 +5,7 @@ namespace SampleQuoteApi.Repository
 {
     public class QuoteRepository : IQuoteRepository
     {
-        public void SaveQuote(CalculateQuoteDbModel quote)
+        public Task SaveQuote(CalculateQuoteDbModel quote)
         {
             var task = new Task(() => {
                 using (var dbContext = new QuoteDbContext())
@@ -22,6 +22,7 @@ namespace SampleQuoteApi.Repository
             try
             {
                 Task.WaitAll(task);
+                return task;
             }
             catch (AggregateException ex)
             {

@@ -6,6 +6,7 @@ using SampleQuoteApi.Models;
 using SampleQuoteApi.Services;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace SampleQuoteApi.Controllers
 {
@@ -35,7 +36,7 @@ namespace SampleQuoteApi.Controllers
             return View(model);
         }
 
-        public IActionResult CalculateQuote(QuoteFormModel quoteFormModel)
+        public async Task<IActionResult> CalculateQuote(QuoteFormModel quoteFormModel)
         {
             var quoteDomain = new Quote(quoteFormModel, _quoteSetting);
 
@@ -46,7 +47,7 @@ namespace SampleQuoteApi.Controllers
 
             try
             {
-                _quoteService.AddQuote(quoteDomain);
+                await _quoteService.AddQuote(quoteDomain);
             }
             catch (Exception ex)
             {

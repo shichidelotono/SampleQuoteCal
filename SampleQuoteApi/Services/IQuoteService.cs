@@ -1,9 +1,10 @@
 ﻿using SampleQuoteApi.Domain;
+using System.Threading.Tasks;
 
 namespace SampleQuoteApi.Services
 {
     public interface IQuoteService
     {
-        void AddQuote(Quote quoteDomain);
+        Task AddQuote(Quote quoteDomain);
     }
 }

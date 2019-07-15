@@ -1,8 +1,10 @@
-﻿namespace SampleQuoteApi.Repository
+﻿using System.Threading.Tasks;
+
+namespace SampleQuoteApi.Repository
 {
     public interface IQuoteRepository
     {
-        void SaveQuote(CalculateQuoteDbModel quote);
+        Task SaveQuote(CalculateQuoteDbModel quote);
         CalculateQuoteDbModel GetQuoteBy(int key);
     }
 }
