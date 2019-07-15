@@ -13,3 +13,6 @@ Example
 	"mobile" : "0838386288",
 	"email": "dariahou@outlook.com"
 }
+
+* Database name - CalculateQuoteDatabase.db
+* Database location - same directory as SampleQuoteApi.csproj
