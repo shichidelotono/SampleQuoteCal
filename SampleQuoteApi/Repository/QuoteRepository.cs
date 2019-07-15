@@ -12,7 +12,7 @@ namespace SampleQuoteApi.Repository
                 {
                     dbContext.Database.EnsureDeleted();
                     dbContext.Database.EnsureCreated();
-                    var result = dbContext.CalculateQuotes.Add(quote);
+                    dbContext.CalculateQuotes.Add(quote);
                     dbContext.SaveChanges();
                 }
             });
