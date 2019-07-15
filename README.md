@@ -5,13 +5,13 @@ Example
 * URL - https://localhost:5001/api/quote (e.g. running Web App on Kestrel)
 * Method - Post
 * Body - {
-	"amountRequired" : 5000,
+	"amountRequired" : 8000,
 	"term" : 24,
 	"title": "Mrs",
-	"firstName" : "Daria",
-	"lastName" : "Hou",
-	"mobile" : "0838386288",
-	"email": "dariahou@outlook.com"
+	"firstName" : "Bumble",
+	"lastName" : "Bee",
+	"mobile" : "0838386289",
+	"email": "bumblebee@outlook.com"
 }
 
 * Database name - CalculateQuoteDatabase.db
