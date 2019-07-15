@@ -4,6 +4,7 @@ using SampleQuoteApi.AppSettings;
 using SampleQuoteApi.Domain;
 using SampleQuoteApi.Models;
 using SampleQuoteApi.Services;
+using System;
 using System.Diagnostics;
 
 namespace SampleQuoteApi.Controllers
@@ -39,11 +40,18 @@ namespace SampleQuoteApi.Controllers
             var quoteDomain = new Quote(quoteFormModel, _quoteSetting);
 
             if (!quoteDomain.IsValid)
-                Error();
+                return Error();
 
             var calculateQuoteViewModel = new CalculateQuoteViewModel(quoteDomain);
 
-            _quoteService.AddQuote(quoteDomain);
+            try
+            {
+                _quoteService.AddQuote(quoteDomain);
+            }
+            catch (Exception ex)
+            {
+                return Error();
+            }
 
             return View(calculateQuoteViewModel);
         }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace SampleQuoteApi.Repository
 {
@@ -6,12 +7,25 @@ namespace SampleQuoteApi.Repository
     {
         public void SaveQuote(CalculateQuoteDbModel quote)
         {
-            using (var dbContext = new QuoteDbContext())
+            var task = new Task(() => {
+                using (var dbContext = new QuoteDbContext())
+                {
+                    dbContext.Database.EnsureDeleted();
+                    dbContext.Database.EnsureCreated();
+                    var result = dbContext.CalculateQuotes.Add(quote);
+                    dbContext.SaveChanges();
+                }
+            });
+
+            task.Start();
+
+            try
             {
-                dbContext.Database.EnsureDeleted();
-                dbContext.Database.EnsureCreated();
-                var result = dbContext.CalculateQuotes.Add(quote);
-                dbContext.SaveChanges();
+                Task.WaitAll(task);
+            }
+            catch (AggregateException ex)
+            {
+                throw ex;
             }
         }
 
