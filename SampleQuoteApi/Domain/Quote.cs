@@ -24,7 +24,7 @@ namespace SampleQuoteApi.Domain
         public decimal Repayments => _repayments >= 0 ? _repayments : Pmt(_interestRate, Term, (double)AmountRequired);
         public decimal TotalRepayments => Repayments * Term + _quoteSetting.Value.EstablishmentFee;
         public decimal Interest => Repayments * Term - AmountRequired;
-        public bool IsValid => _isValid != null ? _isValid.Value : Validate();
+        public bool IsValid => Validate();
         public decimal EstablishmentFee() => _quoteSetting.Value.EstablishmentFee;
 
         public Quote(QuoteFormModel quoteFormModel, IOptions<QuoteSetting> quoteSetting)
@@ -66,13 +66,18 @@ namespace SampleQuoteApi.Domain
 
         private bool Validate()
         {
-            return (AmountRequired >= _quoteSetting.Value.MinAmountRequired && AmountRequired < _quoteSetting.Value.MaxAmountRequired)
-                && (Term >= _quoteSetting.Value.MinTerm && Term < _quoteSetting.Value.MaxTerm)
-                && Title.Length == maxTitleLength
-                && !string.IsNullOrWhiteSpace(FirstName)
-                && !string.IsNullOrWhiteSpace(LastName)
-                && !string.IsNullOrWhiteSpace(Mobile)
-                && !string.IsNullOrWhiteSpace(Email);
+            if (!_isValid.HasValue)
+            {
+                _isValid = (AmountRequired >= _quoteSetting.Value.MinAmountRequired && AmountRequired < _quoteSetting.Value.MaxAmountRequired)
+                    && (Term >= _quoteSetting.Value.MinTerm && Term < _quoteSetting.Value.MaxTerm)
+                    && Title.Length == maxTitleLength
+                    && !string.IsNullOrWhiteSpace(FirstName)
+                    && !string.IsNullOrWhiteSpace(LastName)
+                    && !string.IsNullOrWhiteSpace(Mobile)
+                    && !string.IsNullOrWhiteSpace(Email);
+            }
+
+            return _isValid.Value;
         }
     }
 }
