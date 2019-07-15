@@ -2,7 +2,7 @@
 
 Example
 
-* URL - https://localhost:5001/api/quote
+* URL - https://localhost:5001/api/quote (e.g. running Web App on Kestrel)
 * Method - Post
 * Body - {
 	"amountRequired" : 5000,
