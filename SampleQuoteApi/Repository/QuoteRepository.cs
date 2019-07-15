@@ -6,15 +6,23 @@ namespace SampleQuoteApi.Repository
     {
         public void SaveQuote(CalculateQuoteDbModel quote)
         {
-            Task.Factory.StartNew(() => {
-                using (var dbContext = new QuoteDbContext())
-                {
-                    dbContext.Database.EnsureDeleted();
-                    dbContext.Database.EnsureCreated();
-                    dbContext.CalculateQuotes.Add(quote);
-                    dbContext.SaveChanges();
-                }
-            });
+            using (var dbContext = new QuoteDbContext())
+            {
+                dbContext.Database.EnsureDeleted();
+                dbContext.Database.EnsureCreated();
+                var result = dbContext.CalculateQuotes.Add(quote);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public CalculateQuoteDbModel GetQuoteBy(int key)
+        {
+            CalculateQuoteDbModel dbResult;
+            using (var dbContext = new QuoteDbContext())
+            {
+                dbResult = dbContext.CalculateQuotes.Find(key);
+            }
+            return dbResult;
         }
     }
 }
